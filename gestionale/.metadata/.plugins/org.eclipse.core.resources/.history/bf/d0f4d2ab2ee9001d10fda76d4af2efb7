@@ -1,0 +1,5 @@
+package gestionale.dolci;
+
+public interface DolceRepository {
+
+}

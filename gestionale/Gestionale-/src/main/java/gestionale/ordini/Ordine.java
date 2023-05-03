@@ -1,0 +1,35 @@
+package gestionale.ordini;
+
+import java.util.List;
+
+import gestionale.bibite.Bibita;
+import gestionale.dolci.Dolce;
+import gestionale.pizze.Pizza;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name= "Ordini")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Ordine {
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private Long id;
+@OneToMany
+private List <Pizza> pizze;
+@OneToMany
+private List <Bibita> bevande;
+@OneToMany
+private List <Dolce> dolci;
+
+
+}

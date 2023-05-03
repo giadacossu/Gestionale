@@ -1,0 +1,28 @@
+package gestionale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import pizze.Pizze;
+import pizze.PizzeService;
+
+@SpringBootApplication
+public class GestionaleApplication {
+	
+	@Autowired PizzeService s;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(GestionaleApplication.class, args);
+		System.out.println("work");
+		
+		
+
+		Pizze p = new Pizze();
+	p.setNome("margherita");
+	p.setPrezzo(5);
+	s.createPizze(p);
+System.out.println("pizze runner work  ");
+	}
+
+}

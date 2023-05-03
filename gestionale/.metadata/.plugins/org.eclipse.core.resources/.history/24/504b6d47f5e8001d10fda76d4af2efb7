@@ -1,0 +1,26 @@
+package pizze.copy;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.AssertFalse.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import prodotto.Prodotto;
+@Entity
+@Table(name="Pizze")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Pizze extends Prodotto {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private List ingredienti;
+	private int prezzo;
+}
+

@@ -1,0 +1,33 @@
+package gestionale.pizze;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+import gestionale.ingredienti.IngredienteRunner;
+
+
+@Component
+public class PizzeRunner implements ApplicationRunner{
+@Autowired PizzeService service;
+@Autowired IngredienteRunner ingrediente;
+@Override
+public void run(ApplicationArguments args) throws Exception {
+
+	
+System.out.println("pizze runner work  ");
+//creaPizze();
+}
+
+public Pizza creaPizze() {	
+	Pizza p = new Pizza();
+	p.setNome("margherita");
+	p.setIngredienti(ingrediente.creaLista());
+	p.setPrezzo(5);
+	service.createPizze(p);
+	return p;
+}
+
+
+}

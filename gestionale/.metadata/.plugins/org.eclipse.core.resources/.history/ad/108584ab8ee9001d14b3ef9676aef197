@@ -1,0 +1,46 @@
+package gestionale.dolci;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class DolceService {
+
+	@Autowired DolceRepository repo;
+	public Dolce createDolce(Dolce p) {
+
+		repo.save(p);
+		System.out.println("Dolce " + p.getNome()+"  creata");
+			return p;
+		}
+		
+		public List<Dolce> getAllDolce() {
+			return (List<Dolce>) repo.findAll();
+		}
+		
+		public Dolce getDolceById(Long id) {
+			if(!repo.existsById(id)) {
+				 throw new EntityNotFoundException("questa Dolce non esiste");
+			}
+			return repo.findById(id).get();
+		}
+		
+		public Dolce updateDolce(Dolce p) {
+			if(!repo.existsById(p.getId())) {
+				 throw new EntityNotFoundException("questa Dolce  non esiste");
+			}
+			repo.save(p);
+			return p;
+		}
+		
+		public String removeDolce(Long id) {
+			if(!repo.existsById(id)) {
+				 throw new EntityNotFoundException("questa Dolce  non esiste");
+			}
+			repo.deleteById(id);
+			return "Dolce eliminato";
+		}
+}
