@@ -12,14 +12,21 @@ public class PizzaService {
 	
 	@Autowired PizzaRepository repo;
 	
+	
+	
+	//////crea///////////////
 	public Pizza createPizza(Pizza p) {
-		if(repo.existsByNome(p.getNome()))
+		if(repo.existsByNome(p.getNome())) {
+			System.out.println("pizza gia presente");
+		}
 		repo.save(p);
 	
 		System.out.println("Pizza " + p.getNome()+"  creata");
 			return p;
 		}
 		
+	
+	///////////get/////////////////
 		public List<Pizza> getAllPizza() {
 			return (List<Pizza>) repo.findAll();
 		}
@@ -31,6 +38,16 @@ public class PizzaService {
 			return repo.findById(id).get();
 		}
 		
+		public Pizza getPizzaByNome(String nome) {
+			if(!repo.existsByNome(nome)) {
+				System.out.println("questa pizza non esiste");
+			}
+			return repo.findByNome(nome);
+		}
+		
+		
+		
+		////////////UpDate/////////////////
 		public Pizza updatePizza(Pizza p) {
 			if(!repo.existsById(p.getId())) {
 				 throw new EntityNotFoundException("questa Pizza  non esiste");
@@ -38,7 +55,7 @@ public class PizzaService {
 			repo.save(p);
 			return p;
 		}
-		
+		////////////Remove///////////////////////
 		public String removePizza(Long id) {
 			if(!repo.existsById(id)) {
 				 throw new EntityNotFoundException("questa Pizza  non esiste");

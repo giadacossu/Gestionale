@@ -1,0 +1,5 @@
+package gestionale.ordini;
+
+public interface OrdineRepository {
+
+}

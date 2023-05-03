@@ -1,0 +1,5 @@
+package gestionale.ordini;
+
+public class OrdineService {
+
+}

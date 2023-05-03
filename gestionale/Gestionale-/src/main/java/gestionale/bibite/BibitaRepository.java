@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BibitaRepository  extends CrudRepository <Bibita, Long>{
 	public boolean existsByNome(String nome);
+	public Bibita findByNome(String nome);
+	
 }
