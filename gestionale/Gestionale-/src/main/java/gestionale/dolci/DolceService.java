@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gestionale.ingredienti.Ingrediente;
+import gestionale.prodotti.Prodotto;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -16,11 +17,14 @@ public class DolceService {
 
 	/////// crea/////////////////////////////
 	public Dolce createDolce(Dolce p) {
-		if (repo.existsByNome(p.getNome()))
-			repo.save(p);
-		System.out.println("Dolce " + p.getNome() + "  creata");
-		return p;
-	}
+		if(repo.existsByNome(p.getNome())) {
+			System.out.println("Dolce gia presente");
+		}
+		repo.save(p);
+	
+		System.out.println("Dolce " + p.getNome()+"  creata");
+			return p;
+		}
 
    ///////get/////////////////////////////
 	public List<Dolce> getAllDolce() {

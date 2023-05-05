@@ -1,0 +1,23 @@
+package gestionale.bibite;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class BibitaRunner implements ApplicationRunner{
+@Autowired BibitaService service;
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		
+		creaBibita();
+	}
+public Bibita creaBibita() {
+	Bibita b = new Bibita();
+	b.setNome("coca cola");
+	b.setPrezzo(2.50);
+	service.createBibita(b);
+	return b;
+}
+}

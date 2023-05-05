@@ -1,0 +1,63 @@
+package gestionale.bibite;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import jakarta.persistence.EntityNotFoundException;
+
+public class BibitaService {
+
+	@Autowired BibitaRepository repo;
+	///////crea/////////////////////
+	
+	public  Bibita createBibita(Bibita p) {
+		if(repo.existsByNome(p.getNome())) {
+			System.out.println("Bibita gia presente");
+		}
+		repo.save(p);
+	
+		System.out.println("Bibita " + p.getNome()+"  creata");
+			return p;
+		}
+	
+	///////get/////////////////////
+		public List<Bibita> getAllBibita() {
+			return (List<Bibita>) repo.findAll();
+		}
+		
+		
+		public Bibita getBibitaById(Long id) {
+			if(!repo.existsById(id)) {
+				 throw new EntityNotFoundException("questa Bibita non esiste");
+			}
+			return repo.findById(id).get();
+		}
+		
+		public Bibita getBibitaByNome(String nome) {
+			if(!repo.existsByNome(nome)) {
+				System.out.println("questo Bibita non esiste");
+			}
+			return repo.findByNome(nome);
+		}
+		///////update/////////////////////
+		public Bibita updateBibita(Bibita p) {
+			if(!repo.existsById(p.getId())) {
+				 throw new EntityNotFoundException("questa Bibita  non esiste");
+			}
+			repo.save(p);
+			return p;
+		}
+		///////remove/////////////////////
+		public String removeBibita(Long id) {
+			if(!repo.existsById(id)) {
+				 throw new EntityNotFoundException("questa Bibita  non esiste");
+			}
+			repo.deleteById(id);
+			return "Bibita eliminato";
+		}
+	
+	
+}

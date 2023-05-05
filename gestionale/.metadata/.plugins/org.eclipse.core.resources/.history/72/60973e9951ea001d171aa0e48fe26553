@@ -1,0 +1,36 @@
+package gestionale.ordini;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+
+import gestionale.prodotti.Prodotto;
+import gestionale.tavolo.Tavolo;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name= "Ordini")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Ordine {
+@Id
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private Long id;
+private Map <Integer, Prodotto> ordinato = new HashMap <Integer, Prodotto>();
+private int coperti;
+private LocalDateTime oraAcquisizione = LocalDateTime.now();
+private String costoCoperto;
+@OneToOne
+private Tavolo tavolo;
+}

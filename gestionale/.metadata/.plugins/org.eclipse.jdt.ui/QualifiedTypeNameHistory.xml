@@ -59,4 +59,5 @@
     <fullyQualifiedTypeName name="gestionale.dolci.DolceService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="gestionale.bibite.BibitaService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.parameters.P"/>
 </qualifiedTypeNameHistroy>

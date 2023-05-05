@@ -1,14 +1,23 @@
 package gestionale.ordini;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import gestionale.bibite.Bibita;
-import gestionale.dolci.Dolce;
-import gestionale.pizze.Pizza;
+import org.springframework.security.core.parameters.P;
+
+import gestionale.prodotti.Prodotto;
+import gestionale.tavolo.Tavolo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,6 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name= "Ordini")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,11 +35,19 @@ public class Ordine {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
 @OneToMany
-private List <Pizza> pizze;
-@OneToMany
-private List <Bibita> bevande;
-@OneToMany
-private List <Dolce> dolci;
+@JoinColumn(name = "ordine_id")
+private List <Prodotto> listaOrdine = new ArrayList<Prodotto>() ;
+private int coperti;
+private LocalDateTime oraAcquisizione = LocalDateTime.now();
+private double costoCoperto = 1.00;
+@ManyToOne
+private Tavolo tavolo;
+
+
+public void costoCoperto() {
+System.out.println(	this.coperti * this.costoCoperto);
+}
+
 
 
 }

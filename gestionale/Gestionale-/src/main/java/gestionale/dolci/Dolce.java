@@ -12,13 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
 @Table(name="dolci")
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class Dolce extends Prodotto{
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private String nome;
-	private int prezzo;
+
 }

@@ -1,0 +1,5 @@
+package gestionale.prodotti;
+
+public class ProdottoService {
+
+}

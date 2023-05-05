@@ -1,0 +1,67 @@
+package gestionale.tavolo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class TavoloService {
+@Autowired TavoloRepository repo;
+
+//////crea///////////////
+public Tavolo createTavolo(Tavolo p) {
+	if(repo.existByNumero(p.getNumero())) {
+		System.out.println("Tavolo gia presente");
+	}
+	repo.save(p);
+
+	System.out.println("Tavolo " + p.getNumero()+"  creata");
+		return p;
+	}
+	
+
+///////////get/////////////////
+	public List<Tavolo> getAllTavolo() {
+		return (List<Tavolo>) repo.findAll();
+	}
+	
+	public Tavolo getTavoloById(Long id) {
+		if(!repo.existsById(id)) {
+			 throw new EntityNotFoundException("questa Tavolo non esiste");
+		}
+		return repo.findById(id).get();
+	}
+	
+	public Tavolo getTavoloByNumero(int n) {
+		if(!repo.existsByNumero(n)) {
+			System.out.println("questa Tavolo non esiste");
+		}
+		return repo.findByNumero(n);
+	}
+	
+	
+	
+	////////////UpDate/////////////////
+	public Tavolo updateTavolo(Tavolo p) {
+		if(!repo.existsById(p.getId())) {
+			 throw new EntityNotFoundException("questa Tavolo  non esiste");
+		}
+		repo.save(p);
+		return p;
+	}
+	////////////Remove///////////////////////
+	public String removeTavolo(Long id) {
+		if(!repo.existsById(id)) {
+			 throw new EntityNotFoundException("questa Tavolo  non esiste");
+		}
+		repo.deleteById(id);
+		return "Tavolo eliminato";
+	}
+}
+
+
+

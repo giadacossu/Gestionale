@@ -25,7 +25,7 @@ public class IngredienteRunner implements ApplicationRunner{
 public  Ingrediente creaIngrediente(){
 		Ingrediente i = new Ingrediente();
 		i.setNome("prosciutto cotto");
-		//service.createIngrediente(i);
+		service.createIngrediente(i);
 		return i;
 		
 		}

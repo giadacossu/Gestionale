@@ -12,13 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
 @Table(name="Bibite")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+
 public class Bibita extends Prodotto {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	private String nome;
-	private int prezzo;
+
 }

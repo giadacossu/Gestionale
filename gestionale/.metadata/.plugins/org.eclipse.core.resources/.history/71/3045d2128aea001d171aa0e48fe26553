@@ -1,0 +1,5 @@
+package gestionale.tavolo;
+
+public interface TavoloRepository {
+
+}

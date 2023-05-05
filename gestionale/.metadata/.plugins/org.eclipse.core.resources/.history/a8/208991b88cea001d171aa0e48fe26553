@@ -1,0 +1,9 @@
+package gestionale.tavolo;
+
+import org.springframework.data.repository.CrudRepository;
+
+
+
+public interface TavoloRepository  extends CrudRepository <Tavolo, Long>{
+	public Tavolo findByNumero(int numero);
+}
